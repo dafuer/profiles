@@ -3,4 +3,4 @@
 #   resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
 #   prefix:   /_internal
 profiles:
-  resource: "@ProfilesBundle/Resourcess/config/routing/internal.xml"
+  resource: "@ProfilesBundle/Resources/config/routing.yml"
