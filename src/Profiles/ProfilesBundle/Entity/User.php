@@ -4,7 +4,7 @@ namespace Profiles\ProfilesBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-/*
+/**
  * @ORM\Entity
  * @ORM\Table(name="user")
  */
@@ -79,15 +79,15 @@ class User
     protected $votes;
     
     /**
-     * @ManyToMany(targetEntity="User", mappedBy="myFriends")
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="myFriends")
      */
     private $friendsWithMe;
 
     /**
-     * @ManyToMany(targetEntity="User", inversedBy="friendsWithMe")
-     * @JoinTable(name="friends",
-     *      joinColumns={@JoinColumn(name="user_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@JoinColumn(name="friend_user_id", referencedColumnName="id")}
+     * @ORM\ManyToMany(targetEntity="User", inversedBy="friendsWithMe")
+     * @ORM\JoinTable(name="friends",
+     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="friend_user_id", referencedColumnName="id")}
      *      )
      */
     private $myFriends;
