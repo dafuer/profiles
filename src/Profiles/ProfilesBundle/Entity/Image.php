@@ -5,7 +5,7 @@ namespace Profiles\ProfilesBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Profiles\ProfilesBundle\Repository\ImageRepository")
  * @ORM\Table(name="image")
  */
 class Image

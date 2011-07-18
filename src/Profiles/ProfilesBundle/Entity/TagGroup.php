@@ -5,7 +5,7 @@ namespace Profiles\ProfilesBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Profiles\ProfilesBundle\Repository\TagRepository")
  * @ORM\Table(name="taggroup")
  * 
  */
