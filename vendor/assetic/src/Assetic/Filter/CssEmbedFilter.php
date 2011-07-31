@@ -24,7 +24,7 @@ class CssEmbedFilter implements FilterInterface
 {
     private $jarPath;
     private $javaPath;
-    private $charset = 'utf-8';
+    private $charset;
     private $mhtml; // Enable MHTML mode.
     private $mhtmlRoot; // Use <root> as the MHTML root for the file.
     private $root; // Prepends <root> to all relative URLs.
@@ -80,7 +80,12 @@ class CssEmbedFilter implements FilterInterface
     public function filterDump(AssetInterface $asset)
     {
         $pb = new ProcessBuilder();
-        $pb->add($this->javaPath)->add('-jar')->add($this->jarPath);
+        $pb
+            ->inheritEnvironmentVariables()
+            ->add($this->javaPath)
+            ->add('-jar')
+            ->add($this->jarPath)
+        ;
 
         if (null !== $this->charset) {
             $pb->add('--charset')->add($this->charset);

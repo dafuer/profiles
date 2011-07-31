@@ -25,36 +25,42 @@ use Monolog\Handler\StreamHandler;
 class Logger
 {
     /**
-     * Debug messages
+     * Detailed debug information
      */
     const DEBUG = 100;
 
     /**
-     * Messages you usually don't want to see
+     * Interesting events
+     *
+     * Examples: User logs in, SQL logs.
      */
     const INFO = 200;
 
     /**
      * Exceptional occurences that are not errors
      *
-     * This is typically the logging level you want to use
+     * Examples: Use of deprecated APIs, poor use of an API,
+     * undesirable things that are not necessarily wrong.
      */
     const WARNING = 300;
 
     /**
-     * Errors
+     * Runtime errors
      */
     const ERROR = 400;
 
     /**
-     * Critical conditions (component unavailable, etc.)
+     * Critical conditions
+     *
+     * Example: Application component unavailable, unexpected exception.
      */
     const CRITICAL = 500;
 
     /**
-     * Action must be taken immediately (entire service down)
+     * Action must be taken immediately
      *
-     * Should trigger alert by sms, email, etc.
+     * Example: Entire website down, database unavailable, etc.
+     * This should trigger the SMS alerts and wake you up.
      */
     const ALERT = 550;
 
@@ -116,6 +122,9 @@ class Logger
      */
     public function pushProcessor($callback)
     {
+        if (!is_callable($callback)) {
+            throw new \InvalidArgumentException('Processors must be valid callables (callback or object with an __invoke method), '.var_export($callback, true).' given');
+        }
         array_unshift($this->processors, $callback);
     }
 

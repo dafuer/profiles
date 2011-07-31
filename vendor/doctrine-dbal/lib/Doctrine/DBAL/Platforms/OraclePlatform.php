@@ -118,22 +118,22 @@ class OraclePlatform extends AbstractPlatform
 
     public function getDateAddDaysExpression($date, $days)
     {
-        return '(' . $date . '+' . (int)$days . ')';
+        return '(' . $date . '+' . $days . ')';
     }
 
     public function getDateSubDaysExpression($date, $days)
     {
-        return '(' . $date . '-' . (int)$days . ')';
+        return '(' . $date . '-' . $days . ')';
     }
 
     public function getDateAddMonthExpression($date, $months)
     {
-        return "ADD_MONTHS(" . $date . ", " . (int)$months . ")";
+        return "ADD_MONTHS(" . $date . ", " . $months . ")";
     }
 
     public function getDateSubMonthExpression($date, $months)
     {
-        return "ADD_MONTHS(" . $date . ", -" . (int)$months . ")";
+        return "ADD_MONTHS(" . $date . ", -" . $months . ")";
     }
     
     /**
@@ -475,9 +475,16 @@ LEFT JOIN all_cons_columns r_cols
     public function getListTableColumnsSQL($table, $database = null)
     {
         $table = strtoupper($table);
+        $ownerCondition = '';
+        
+        if(null !== $database){
+            $database = strtoupper($database);
+            $ownerCondition = "AND c.owner = '".$database."'";
+        }
+        
         return "SELECT c.*, d.comments FROM all_tab_columns c ".
                "INNER JOIN all_col_comments d ON d.OWNER = c.OWNER AND d.TABLE_NAME = c.TABLE_NAME AND d.COLUMN_NAME = c.COLUMN_NAME ".
-               "WHERE c.table_name = '" . $table . "' ORDER BY c.column_name";
+               "WHERE c.table_name = '" . $table . "' ".$ownerCondition." ORDER BY c.column_name";
     }
 
     /**
