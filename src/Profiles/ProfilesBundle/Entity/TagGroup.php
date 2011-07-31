@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="Profiles\ProfilesBundle\Repository\TagRepository")
- * @ORM\Table(name="taggroup")
+ * @ORM\Table(name="profiles_taggroup")
  * 
  */
 class TagGroup

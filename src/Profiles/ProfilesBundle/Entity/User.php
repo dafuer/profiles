@@ -3,12 +3,13 @@
 namespace Profiles\ProfilesBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use FOS\UserBundle\Entity\User As BaseUser;
 
 /**
  * @ORM\Entity(repositoryClass="Profiles\ProfilesBundle\Repository\UserRepository")
- * @ORM\Table(name="user")
+ * @ORM\Table(name="profiles_user")
  */
-class User
+class User extends BaseUser
 {
     /**
      * @ORM\Id
@@ -17,34 +18,10 @@ class User
      */
     protected $id;
     
-    /**
-     * @ORM\Column(type="string", length="100")
-     */
-    protected $username;
-    
-    /**
-     * @ORM\Column(type="string", length="255")
-     */
-    protected $name;
-    
-    /**
-     * @ORM\Column(type="string", length="255")
-     */
-    protected $email;
-    
-    /**
-     * @ORM\Column(type="string", length="20")
-     */
-    protected $password;
-    
-    /**
-     * @ORM\Column(type="date")
-     */
-    protected $created_at;
     
     /**
      * @ORM\ManyToMany(targetEntity="Group", inversedBy="users")
-     * @ORM\JoinTable(name="users_groups")
+     * @ORM\JoinTable(name="profiles_users_groups")
      * 
      * Grupos a los que el usuario pertenece
      */     
@@ -85,7 +62,7 @@ class User
 
     /**
      * @ORM\ManyToMany(targetEntity="User", inversedBy="friendsWithMe")
-     * @ORM\JoinTable(name="friends",
+     * @ORM\JoinTable(name="profiles_friends",
      *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="friend_user_id", referencedColumnName="id")}
      *      )
@@ -95,6 +72,8 @@ class User
     
     public function __construct()
     {
+        parent::__construct();
+        
         $this->groups = new \Doctrine\Common\Collections\ArrayCollection();
         $this->groups_created = new \Doctrine\Common\Collections\ArrayCollection();
         $this->profiles_created = new \Doctrine\Common\Collections\ArrayCollection();

@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="Profiles\ProfilesBundle\Repository\GroupRepository")
- * @ORM\Table(name="groups")
+ * @ORM\Table(name="profiles_groups")
  */
 class Group
 {
