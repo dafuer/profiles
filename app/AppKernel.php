@@ -17,9 +17,7 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
-            new Profiles\ProfilesBundle\ProfilesBundle(),
-            new FOS\UserBundle\FOSUserBundle(),
-            new FOS\FacebookBundle\FosFacebookBundle()
+            new Profiles\ProfilesBundle\ProfilesBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
