@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="Profiles\ProfilesBundle\Repository\UserRepository")
- * @ORM\Table(name="user")
+ * @ORM\Table(name="profiles_user")
  */
 class User
 {
@@ -44,7 +44,7 @@ class User
     
     /**
      * @ORM\ManyToMany(targetEntity="Group", inversedBy="users")
-     * @ORM\JoinTable(name="users_groups")
+     * @ORM\JoinTable(name="profiles_users_groups")
      * 
      * Grupos a los que el usuario pertenece
      */     
@@ -85,7 +85,7 @@ class User
 
     /**
      * @ORM\ManyToMany(targetEntity="User", inversedBy="friendsWithMe")
-     * @ORM\JoinTable(name="friends",
+     * @ORM\JoinTable(name="profiles_friends",
      *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="friend_user_id", referencedColumnName="id")}
      *      )
