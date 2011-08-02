@@ -1,0 +1,7 @@
+main:
+  pattern: /
+  defaults: { _controller: ProfilesBundle:Default:index }
+
+default:
+  pattern: /secured/friends/
+  defaults: { _controller: ProfilesBundle:Default:friends }

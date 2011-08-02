@@ -60,3 +60,11 @@ fos_user:
     db_driver: orm
     firewall_name: main
     user_class: Profiles\ProfilesBundle\Entity\User
+    
+fos_facebook:
+      file:   %kernel.root_dir%/../vendor/facebook/src/base_facebook.php
+      alias:  facebook
+      app_id: 244765382209661
+      secret: 77facbd7c6487b5f54eaf7ee62bae934
+      cookie: true
+      permissions: [email, user_birthday, user_location]

@@ -1,0 +1,13 @@
+{% extends 'ProfilesBundle::layout.html.twig' %}
+
+{% block content %}
+
+    <h2>Amigos de {{ me.name }}:</h2>
+    
+    <ul>
+        {% for friend in friends %}
+            <li><img src="{{ friend.pic_square }}"/><a href="http://www.facebook.com/profile.php?id={{ friend.uid }}" target="_blank">{{ friend.name}}</a></li>
+        {% endfor %}    
+    </ul>
+    
+{% endblock %}
