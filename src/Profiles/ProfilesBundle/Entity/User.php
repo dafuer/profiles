@@ -2,13 +2,14 @@
 
 namespace Profiles\ProfilesBundle\Entity;
 
+use FOS\UserBundle\Entity\User As BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="Profiles\ProfilesBundle\Repository\UserRepository")
  * @ORM\Table(name="profiles_user")
  */
-class User
+class User extends BaseUser
 {
     /**
      * @ORM\Id
@@ -17,30 +18,6 @@ class User
      */
     protected $id;
     
-    /**
-     * @ORM\Column(type="string", length="100")
-     */
-    protected $username;
-    
-    /**
-     * @ORM\Column(type="string", length="255")
-     */
-    protected $name;
-    
-    /**
-     * @ORM\Column(type="string", length="255")
-     */
-    protected $email;
-    
-    /**
-     * @ORM\Column(type="string", length="20")
-     */
-    protected $password;
-    
-    /**
-     * @ORM\Column(type="date")
-     */
-    protected $created_at;
     
     /**
      * @ORM\ManyToMany(targetEntity="Group", inversedBy="users")
@@ -95,6 +72,7 @@ class User
     
     public function __construct()
     {
+        parent::__construct();
         $this->groups = new \Doctrine\Common\Collections\ArrayCollection();
         $this->groups_created = new \Doctrine\Common\Collections\ArrayCollection();
         $this->profiles_created = new \Doctrine\Common\Collections\ArrayCollection();
