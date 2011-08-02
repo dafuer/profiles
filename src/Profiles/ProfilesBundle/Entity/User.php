@@ -2,8 +2,8 @@
 
 namespace Profiles\ProfilesBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Entity\User As BaseUser;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="Profiles\ProfilesBundle\Repository\UserRepository")
@@ -73,7 +73,6 @@ class User extends BaseUser
     public function __construct()
     {
         parent::__construct();
-        
         $this->groups = new \Doctrine\Common\Collections\ArrayCollection();
         $this->groups_created = new \Doctrine\Common\Collections\ArrayCollection();
         $this->profiles_created = new \Doctrine\Common\Collections\ArrayCollection();
